@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+	{{session['responses']}}
 	<form action="/answers" method="post">
+		{% for msg in get_flashed_messages() %}
+			<p>{{msg}}</p>
+		{% endfor %}
 		<h3>{{question}}</h3>
 		{% for choice in choices %}
 			<input type="radio" id="{{choice}}" name="choice" value="{{choice}}">
